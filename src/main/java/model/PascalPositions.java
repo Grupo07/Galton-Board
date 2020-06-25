@@ -2,6 +2,7 @@
 package model;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 /**
  * Indicates a set of positions with a related color
@@ -10,19 +11,19 @@ import java.awt.Color;
  */
 public class PascalPositions {
     
-    private Position[] positions;
+    private ArrayList<Position> positions;
     private Color color;
 
-    public PascalPositions(Position[] positions, Color color) {
+    public PascalPositions(ArrayList<Position> positions, Color color) {
         this.positions = positions;
         this.color = color;
     }
 
-    public Position[] getPositions() {
+    public ArrayList<Position> getPositions() {
         return positions;
     }
 
-    public void setPositions(Position[] positions) {
+    public void setPositions(ArrayList<Position> positions) {
         this.positions = positions;
     }
 

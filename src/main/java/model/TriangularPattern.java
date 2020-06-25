@@ -2,6 +2,7 @@
 package model;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 /**
  * Pattern of triangular numbers in the third diagonal of the Pascal triangle.
@@ -17,14 +18,17 @@ public class TriangularPattern implements PascalPattern {
      * @return set of positions with a color to highlight the pattern in a Pascal triangle
      */
     @Override
-    public PascalPositions[] getPattern(int[][] pascalTriangle) {
+    public ArrayList<PascalPositions> getPattern(int[][] pascalTriangle) {
         if (pascalTriangle.length < 3)
-            return new PascalPositions[0];
-        PascalPositions[] pascalPositions = new PascalPositions[1];
-        Position[] positions = new Position[pascalTriangle.length - 2];
-        for (int row = 0; row < positions.length; row++)
-            positions[row] = new Position(row + 2, 2);
-        pascalPositions[0] = new PascalPositions(positions, new Color(204, 175, 175));
+            return new ArrayList<>();
+        
+        ArrayList<PascalPositions> pascalPositions = new ArrayList<>();
+        ArrayList<Position> positions = new ArrayList<>();
+        
+        for (int row = 2; row < pascalTriangle.length; row++)
+            positions.add(new Position(row, 2));
+        
+        pascalPositions.add(new PascalPositions(positions, new Color(204, 175, 175)));
         return pascalPositions;
     }
     

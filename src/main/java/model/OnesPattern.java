@@ -2,6 +2,7 @@
 package model;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 /**
  * Pattern of only number one in the first diagonal of the Pascal triangle.
@@ -17,12 +18,16 @@ public class OnesPattern implements PascalPattern {
      * @return set of positions with a color to highlight the pattern in a Pascal triangle
      */
     @Override
-    public PascalPositions[] getPattern(int[][] pascalTriangle) {
-        PascalPositions[] pascalPositions = new PascalPositions[1];
-        Position[] positions = new Position[pascalTriangle.length];
-        for (int row = 0; row < positions.length; row++)
-            positions[row] = new Position(row, 0);
-        pascalPositions[0] = new PascalPositions(positions, new Color(149, 225, 211));
+    public ArrayList<PascalPositions> getPattern(int[][] pascalTriangle) {
+        
+        ArrayList<PascalPositions> pascalPositions = new ArrayList<>();
+        ArrayList<Position> positions = new ArrayList<>();
+        
+        for (int row = 0; row < pascalTriangle.length; row++)
+            positions.add(new Position(row, 0));
+        
+        pascalPositions.add(new PascalPositions(positions, new Color(149, 225, 211)));
+        
         return pascalPositions;
     }
     
