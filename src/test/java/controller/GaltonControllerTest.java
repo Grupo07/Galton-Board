@@ -7,10 +7,6 @@ package controller;
 
 import model.GaltonCircle;
 import model.GaltonPathGenerator;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -33,23 +29,6 @@ public class GaltonControllerTest {
         GaltonCircle result = instance.generateCircle();
         
         assertEquals(expResult.getDrawable(), result.getDrawable());
-    }
-
-    /**
-     * Test of updateRightProbability method, of class GaltonController.
-     */
-    @Test
-    public void testUpdateRightProbability() {
-        System.out.println("updateRightProbability");
-        
-        String[] expResult = {"right", "right", "right"};
-        
-        GaltonController instance = new GaltonController(3);
-        float rightProbability = 1.0f;
-        instance.updateRightProbability(rightProbability);
-        String[] result = instance.generateCircle().getPath();
-        
-        assertArrayEquals(expResult, result);
     }
     
 }

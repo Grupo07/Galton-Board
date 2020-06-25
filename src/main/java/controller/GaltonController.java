@@ -12,8 +12,8 @@ import static model.GaltonPathGenerator.getPath;
  */
 public class GaltonController {
     
-    int boardHeight;
-    float rightProbability;
+    private int boardHeight;
+    private float rightProbability;
 
     public GaltonController(int boardHeight) {
         this.boardHeight = boardHeight;
@@ -27,13 +27,13 @@ public class GaltonController {
     public GaltonCircle generateCircle() {
         return new GaltonCircle(GaltonPathGenerator.getPath(boardHeight, rightProbability));
     }
-    
-    /**
-     * Updates the probability of the generated circles of falling to the right
-     * @param rightProbability probability of falling to the right
-     */
-    public void updateRightProbability(float rightProbability) {
+
+    public void setRightProbability(float rightProbability) {
         this.rightProbability = rightProbability;
+    }
+
+    public void setBoardHeight(int boardHeight) {
+        this.boardHeight = boardHeight;
     }
     
 }

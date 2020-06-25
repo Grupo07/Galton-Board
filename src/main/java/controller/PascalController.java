@@ -11,8 +11,8 @@ import model.*;
  */
 public class PascalController {
     
-    int[][] pascalTriangle;
-    PascalPatternDB infoDB;
+    private int[][] pascalTriangle;
+    private PascalPatternDB infoDB;
     
     public PascalController(int pascalTriangleHeight) {
         this.pascalTriangle = PascalTriangleGenerator.getPascalTriangle(pascalTriangleHeight);
