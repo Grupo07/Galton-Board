@@ -28,11 +28,12 @@ public class GaltonPathGenerator {
      * Returns right or left based on a given probability
      * 
      * @param rightProbability probability of falling to the right
-     * @return direction string
+     * @return direction as string
      */
     public static String getLeftOrRight(float rightProbability) {
         if (Math.random() <= rightProbability)
             return "right";
         return "left";
     }
+    
 }

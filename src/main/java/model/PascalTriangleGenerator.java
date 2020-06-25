@@ -1,8 +1,10 @@
 package model;
 
+import java.util.ArrayList;
+
 
 /**
- * Offers useful math utilities to work with the Pascal Triangle.
+ * Offers useful math utilities to work with the Pascal triangle.
  * 
  * @author Luis Mariano Ramírez Segura
  */
@@ -54,6 +56,22 @@ public class PascalTriangleGenerator {
             pascalTriangle[row] = getPascalTriangleRow(row);
         }
         return pascalTriangle;
+    }
+    
+    /**
+     * Returns the Pascal rectangles out of a given Pascal triangle to display
+     * 
+     * @param pascalTriangle Pascal Triangle as a nested array of integers
+     * @return list of Pascal rectangles to display
+     */
+    public static ArrayList<PascalRectangle> getPascalRectangles(int[][] pascalTriangle) {
+        ArrayList<PascalRectangle> pascalRectangles = new ArrayList<>();
+        for (int[] row : pascalTriangle) {
+            for (int coefficient : row) {
+                pascalRectangles.add(new PascalRectangle(coefficient));
+            }
+        }
+        return pascalRectangles;
     }
     
 }
