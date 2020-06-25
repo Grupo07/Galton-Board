@@ -1,23 +1,17 @@
 
 package model;
 
-import java.awt.Color;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
- * Ones Pattern unit tests
- * 
+ *
  * @author Luis Mariano Ramírez Segura
  */
 public class OnesPatternTest {
 
     /**
-     * Test of getPattern method, of class onesPattern.
+     * Test of getPattern method, of class OnesPattern.
      */
     @Test
     public void testGetPattern() {

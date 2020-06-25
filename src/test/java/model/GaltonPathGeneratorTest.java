@@ -1,16 +1,12 @@
 
 package model;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
- * @author Luis Mariano Ramirez Segura
+ * @author Luis Mariano Ramírez Segura
  */
 public class GaltonPathGeneratorTest {
 
