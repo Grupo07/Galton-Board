@@ -34,30 +34,26 @@ public class PascalController {
      * @return list of Pascal positions to highlight the triangle
      */
     public ArrayList<PascalPositions> getPascalPattern(String pattern) {
-        ArrayList<PascalPositions> positions;
         switch(pattern) {
             
             case "first":
-                positions = new OnesPattern().getPattern(pascalTriangle);
-                break;
+                return new OnesPattern().getPattern(pascalTriangle);
             
             case "second":
-                positions = new ConsecutivePattern().getPattern(pascalTriangle);
-                break;
+                return new ConsecutivePattern().getPattern(pascalTriangle);
                 
             case "third":
-                positions = new TriangularPattern().getPattern(pascalTriangle);
-                break; 
+                return new TriangularPattern().getPattern(pascalTriangle);
             
             case "fourth":
-                positions = new TetrahedralPattern().getPattern(pascalTriangle);
-                break; 
+                return new TetrahedralPattern().getPattern(pascalTriangle);
+            
+            case "fibonacci":
+                return new FibonacciPattern().getPattern(pascalTriangle); 
                 
             default:
-                positions = new ArrayList<>();
-                
+                return new ArrayList<>();
         }
-        return positions;
     }
     
     /**
@@ -77,6 +73,26 @@ public class PascalController {
      */
     public void updateTriangleHeight(int height) {
         this.pascalTriangle = PascalTriangleGenerator.getPascalTriangle(height);
+    }
+    
+    /**
+     * Returns display details for Pascal triangle patterns
+     * 
+     * @param pattern name of the Pascal triangle pattern
+     * @return list of string arrays that contains a pattern value and value sums
+     */
+    public ArrayList<String[]> getPatternDisplayDetails(String pattern) {
+        switch (pattern) {
+            
+            case "fibonacci":
+                return new FibonacciPattern().getDetails(pascalTriangle);
+            
+            case "oddsEven":
+                return new ArrayList<>();
+                
+            default:
+                return new ArrayList<>(); 
+        }
     }
     
 }
