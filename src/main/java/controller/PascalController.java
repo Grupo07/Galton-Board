@@ -50,6 +50,12 @@ public class PascalController {
             
             case "fibonacci":
                 return new FibonacciPattern().getPattern(pascalTriangle); 
+            
+            case "oddEven":
+                return new OddEvenPattern().getPattern(pascalTriangle); 
+            
+            case "powers":
+                return new PowersPattern().getPattern(pascalTriangle); 
                 
             default:
                 return new ArrayList<>();
@@ -88,7 +94,7 @@ public class PascalController {
                 return new FibonacciPattern().getDetails(pascalTriangle);
             
             case "oddEven":
-                return new ArrayList<>();
+                return new PowersPattern().getDetails(pascalTriangle);
                 
             default:
                 return new ArrayList<>(); 
