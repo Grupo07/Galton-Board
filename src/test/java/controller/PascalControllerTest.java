@@ -8,12 +8,16 @@ package controller;
 import java.util.ArrayList;
 import model.PascalRectangle;
 import model.Position;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  *
- * @author luism
+ * @author Luis Mariano Ramírez Segura
  */
 public class PascalControllerTest {
 
@@ -96,6 +100,32 @@ public class PascalControllerTest {
         int result = instance.getPascalPattern("first").get(0).getPositions().size();
         
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getPatternDisplayDetails method, of class PascalController.
+     */
+    @Test
+    public void testGetPatternDisplayDetails() {
+        System.out.println("getPatternDisplayDetails");
+       
+        ArrayList<String[]> expResults = new ArrayList<>();
+        expResults.add(new String[]{"1", "1"});
+        expResults.add(new String[]{"1", "1"});
+        expResults.add(new String[]{"2", "1+1"});
+        expResults.add(new String[]{"3", "1+2"});
+        expResults.add(new String[]{"5", "1+3+1"});
+        
+        String pattern = "fibonacci";
+        PascalController instance = new PascalController(5);
+        ArrayList<String[]> results = instance.getPatternDisplayDetails(pattern);
+        
+        for (int i = 0; i < results.size(); i++) {
+            String[] expResult = expResults.get(i);
+            String[] result = results.get(i);
+            assertEquals(expResult[0], result[0]);
+            assertEquals(expResult[1], result[1]);
+        }
     }
     
 }
