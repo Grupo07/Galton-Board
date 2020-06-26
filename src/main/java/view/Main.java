@@ -213,6 +213,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_generateButtonActionPerformed
 
     private void simulateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simulateButtonActionPerformed
+        galtonBoardFrame.setContentPane(new GaltonBoard((int) rowsSpinerGalton.getValue()));
         System.out.println("Deberia simular un galton board de\n"+rowsSpinerGalton.getValue()
         +probabilitySpiner.getValue());
     }//GEN-LAST:event_simulateButtonActionPerformed
