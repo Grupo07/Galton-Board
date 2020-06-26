@@ -48,6 +48,10 @@ public class PascalController {
             case "third":
                 positions = new TriangularPattern().getPattern(pascalTriangle);
                 break; 
+            
+            case "fourth":
+                positions = new TetrahedralPattern().getPattern(pascalTriangle);
+                break; 
                 
             default:
                 positions = new ArrayList<>();
