@@ -16,7 +16,7 @@ public abstract class BasicShape {
 
     public BasicShape(Shape shape) {
         this.shape = shape;
-        this.color = Color.WHITE;
+        this.color = Color.RED;
     }
     
     public abstract void setDimensions(double x, double y, double width, double height);

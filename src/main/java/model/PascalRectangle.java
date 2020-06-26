@@ -51,5 +51,7 @@ public class PascalRectangle extends BasicShape {
     public void setBinomialCoefficient(int binomialCoefficient) {
         this.binomialCoefficient = binomialCoefficient;
     }
+
+    
     
 }

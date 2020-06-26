@@ -5,6 +5,8 @@
  */
 package view;
 
+import controller.PascalController;
+
 /**
  *
  * @author esteb
@@ -16,6 +18,12 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        PascalController pascalC = new PascalController(5);
+        triangleFrame.setContentPane(new PascalTriangle(pascalC.getPascalRectangles(),5));
+        System.out.println(pascalC.getPascalRectangles());
+    }
+    private void changeRows(int rows){
+        //To do 
     }
 
     /**
@@ -33,12 +41,14 @@ public class Main extends javax.swing.JFrame {
         rowsSpinerPascal = new javax.swing.JSpinner();
         generateButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
+        triangleFrame = new javax.swing.JInternalFrame();
         GaltonPanel = new javax.swing.JPanel();
         rowsLabelGalton = new javax.swing.JLabel();
         simulateButton = new javax.swing.JButton();
         probabilitySpiner = new javax.swing.JSpinner();
         probabilityLabel = new javax.swing.JLabel();
         rowsSpinerGalton = new javax.swing.JSpinner();
+        jInternalFrame1 = new javax.swing.JInternalFrame();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,36 +63,56 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        triangleFrame.setVisible(true);
+
+        javax.swing.GroupLayout triangleFrameLayout = new javax.swing.GroupLayout(triangleFrame.getContentPane());
+        triangleFrame.getContentPane().setLayout(triangleFrameLayout);
+        triangleFrameLayout.setHorizontalGroup(
+            triangleFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 383, Short.MAX_VALUE)
+        );
+        triangleFrameLayout.setVerticalGroup(
+            triangleFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout PascalPanelLayout = new javax.swing.GroupLayout(PascalPanel);
         PascalPanel.setLayout(PascalPanelLayout);
         PascalPanelLayout.setHorizontalGroup(
             PascalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PascalPanelLayout.createSequentialGroup()
-                .addContainerGap(330, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(triangleFrame)
+                .addGap(18, 18, 18)
                 .addGroup(PascalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PascalPanelLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(265, 265, 265))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PascalPanelLayout.createSequentialGroup()
-                        .addComponent(generateButton)
-                        .addGap(9, 9, 9))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PascalPanelLayout.createSequentialGroup()
                         .addComponent(rowsLabelPascal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rowsSpinerPascal, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(rowsSpinerPascal, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PascalPanelLayout.createSequentialGroup()
+                        .addComponent(generateButton)
+                        .addGap(9, 9, 9))))
         );
         PascalPanelLayout.setVerticalGroup(
             PascalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PascalPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(PascalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rowsLabelPascal)
-                    .addComponent(rowsSpinerPascal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(generateButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+                .addGroup(PascalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PascalPanelLayout.createSequentialGroup()
+                        .addGroup(PascalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rowsLabelPascal)
+                            .addComponent(rowsSpinerPascal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(generateButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76))
+                    .addGroup(PascalPanelLayout.createSequentialGroup()
+                        .addComponent(triangleFrame)
+                        .addContainerGap())))
         );
 
         jTabbedPane1.addTab("Pascal Triangle", PascalPanel);
@@ -102,18 +132,33 @@ public class Main extends javax.swing.JFrame {
 
         rowsSpinerGalton.setModel(new javax.swing.SpinnerNumberModel(5, 1, 10, 1));
 
+        jInternalFrame1.setVisible(true);
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 417, Short.MAX_VALUE)
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 319, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout GaltonPanelLayout = new javax.swing.GroupLayout(GaltonPanel);
         GaltonPanel.setLayout(GaltonPanelLayout);
         GaltonPanelLayout.setHorizontalGroup(
             GaltonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(GaltonPanelLayout.createSequentialGroup()
-                .addContainerGap(458, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
+                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addGroup(GaltonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(simulateButton, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GaltonPanelLayout.createSequentialGroup()
                         .addGroup(GaltonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(rowsLabelGalton)
-                            .addComponent(probabilityLabel))
+                            .addComponent(probabilityLabel)
+                            .addComponent(rowsLabelGalton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(GaltonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(probabilitySpiner, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -123,17 +168,22 @@ public class Main extends javax.swing.JFrame {
         GaltonPanelLayout.setVerticalGroup(
             GaltonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(GaltonPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(GaltonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rowsLabelGalton)
-                    .addComponent(rowsSpinerGalton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(GaltonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(probabilitySpiner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(probabilityLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(simulateButton)
-                .addContainerGap(272, Short.MAX_VALUE))
+                .addGroup(GaltonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(GaltonPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(GaltonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rowsLabelGalton)
+                            .addComponent(rowsSpinerGalton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(GaltonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(probabilitySpiner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(probabilityLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(simulateButton))
+                    .addGroup(GaltonPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Galton Board", GaltonPanel);
@@ -200,6 +250,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel GaltonPanel;
     private javax.swing.JPanel PascalPanel;
     private javax.swing.JButton generateButton;
+    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel probabilityLabel;
@@ -209,5 +260,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSpinner rowsSpinerGalton;
     private javax.swing.JSpinner rowsSpinerPascal;
     private javax.swing.JButton simulateButton;
+    private javax.swing.JInternalFrame triangleFrame;
     // End of variables declaration//GEN-END:variables
 }
