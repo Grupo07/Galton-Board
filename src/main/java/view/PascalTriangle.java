@@ -13,6 +13,7 @@ import model.PascalRectangle;
 public class PascalTriangle extends JPanel{
     private ArrayList<PascalRectangle> list;
     private int rows;
+    private int triangleWidth = 20; 
     public PascalTriangle(ArrayList<PascalRectangle> list, int rows){
         this.list = list;
         this.rows = rows;
@@ -20,23 +21,39 @@ public class PascalTriangle extends JPanel{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        setCoordinates();
         for(int i = 0; i < list.size(); i++){
-            System.out.println(list.get(i).getDrawable().getBounds2D().getX()
-            +":"+list.get(i).getDrawable().getBounds2D().getY()+"/"
-            +":"+list.get(i).getDrawable().getBounds2D().getWidth()
-            +":"+list.get(i).getDrawable().getBounds2D().getHeight()
-            +":"+list.get(i).getColor()+"\n");
-            list.get(i).setDimensions(100, 100, 50, 50);
             g2.draw(list.get(i).getDrawable().getBounds2D());
             g.drawString(list.get(i).getBinomialCoefficient()+"", 
-                (int) list.get(i).getDrawable().getBounds2D().getCenterX()-10, 
-                (int) list.get(i).getDrawable().getBounds2D().getCenterY());
+                (int) list.get(i).getDrawable().getBounds2D().getCenterX()-2, 
+                (int) list.get(i).getDrawable().getBounds2D().getCenterY()+2);
         }
     }
-
-    public void setRows(int rows) {
-        this.rows = rows;
+    
+    private void setCoordinates(){
+        int y = 30;
+        int remainingRows = rows;
+        int currentRow = 1;
+        int count = 0;
+        int x = (triangleWidth/2)*(rows+1-currentRow);
+        int first = (triangleWidth/2)*(rows+1-currentRow);
+        for(int i = 0; i < list.size(); i++){
+            list.get(i).setDimensions(x, y, triangleWidth, triangleWidth);
+            count++;
+            if(count == currentRow){
+              remainingRows += -1;
+              remainingRows--;
+              count = 0;
+              x -= ((triangleWidth)*currentRow)-(triangleWidth/2);
+              currentRow++;
+              y += triangleWidth;
+              
+            } else{
+              x += triangleWidth;
+            }
+        }
     }
+    
     
     
 }
