@@ -58,7 +58,6 @@ public class FibonacciPattern implements PascalPattern {
         ArrayList<String[]> details = new ArrayList<>();
         
         for (int i = 0; i < pascalTriangle.length; i++) {
-            ArrayList<Position> positions = new ArrayList<>();
             
             int fibonacciNumber = 0;
             String fibonacciSum = "";
@@ -81,18 +80,6 @@ public class FibonacciPattern implements PascalPattern {
         }
         
         return details;
-    }
-    
-    /**
-     * Return the number in position n in the Fibonacci
-     * @param n
-     * @return 
-     */
-    private int getFibonacciNumber(int n) {
-        if (n < 2)
-            return n;
-        else
-            return getFibonacciNumber(n - 1) + getFibonacciNumber(n - 2);
     }
     
 }
