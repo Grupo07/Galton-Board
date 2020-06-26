@@ -13,20 +13,30 @@ import model.PascalRectangle;
 public class PascalTriangle extends JPanel{
     private ArrayList<PascalRectangle> list;
     private int rows;
-    private int triangleWidth = 20; 
+    private int triangleWidth = 40; 
     public PascalTriangle(ArrayList<PascalRectangle> list, int rows){
         this.list = list;
         this.rows = rows;
     }
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         setCoordinates();
-        for(int i = 0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             g2.draw(list.get(i).getDrawable().getBounds2D());
-            g.drawString(list.get(i).getBinomialCoefficient()+"", 
-                (int) list.get(i).getDrawable().getBounds2D().getCenterX()-2, 
-                (int) list.get(i).getDrawable().getBounds2D().getCenterY()+2);
+            if (list.get(i).getBinomialCoefficient() > 99) {
+                g.drawString(list.get(i).getBinomialCoefficient() + "",
+                    (int) list.get(i).getDrawable().getBounds2D().getCenterX() - 10,
+                    (int) list.get(i).getDrawable().getBounds2D().getCenterY() + 2);
+            } else if (list.get(i).getBinomialCoefficient() > 9 ) {
+                g.drawString(list.get(i).getBinomialCoefficient() + "",
+                    (int) list.get(i).getDrawable().getBounds2D().getCenterX() - 6,
+                    (int) list.get(i).getDrawable().getBounds2D().getCenterY() + 2);
+            } else {
+                g.drawString(list.get(i).getBinomialCoefficient() + "",
+                        (int) list.get(i).getDrawable().getBounds2D().getCenterX() - 2,
+                        (int) list.get(i).getDrawable().getBounds2D().getCenterY() + 2);
+            }
         }
     }
     

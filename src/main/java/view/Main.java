@@ -16,11 +16,11 @@ public class Main extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
+    PascalController pascalC;
     public Main() {
         initComponents();
-        PascalController pascalC = new PascalController(5);
+        pascalC = new PascalController(5);
         triangleFrame.setContentPane(new PascalTriangle(pascalC.getPascalRectangles(),5));
-        System.out.println(pascalC.getPascalRectangles());
     }
     private void changeRows(int rows){
         //To do 
@@ -203,7 +203,10 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
-        System.out.println("Debería estar generando un triangulo de pascal de\n"+rowsSpinerPascal.getValue());
+        pascalC.updateTriangleHeight((int) rowsSpinerPascal.getValue());
+        triangleFrame.setContentPane(
+                new PascalTriangle(pascalC.getPascalRectangles(), 
+                (int) rowsSpinerPascal.getValue()));
     }//GEN-LAST:event_generateButtonActionPerformed
 
     private void simulateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simulateButtonActionPerformed
