@@ -52,7 +52,6 @@ public class PascalTriangle extends JPanel{
             count++;
             if(count == currentRow){
               remainingRows += -1;
-              remainingRows--;
               count = 0;
               x -= ((triangleWidth)*currentRow)-(triangleWidth/2);
               currentRow++;
