@@ -87,7 +87,7 @@ public class PascalController {
             case "fibonacci":
                 return new FibonacciPattern().getDetails(pascalTriangle);
             
-            case "oddsEven":
+            case "oddEven":
                 return new ArrayList<>();
                 
             default:
