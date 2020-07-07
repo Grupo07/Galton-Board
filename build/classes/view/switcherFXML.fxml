@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.switcherController">
+   <children>
+      <HBox prefHeight="30.0" prefWidth="600.0">
+         <children>
+            <Button id="pascalButton" fx:id="pascalButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loadPascalView" prefHeight="30.0" prefWidth="400.0" text="Pascal Mode" />
+            <Button id="galtonButton" fx:id="galtonButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadGaltonView" prefHeight="30.0" prefWidth="400.0" text="Galton Mode" />
+         </children>
+      </HBox>
+      <Pane fx:id="pane" prefHeight="555.0" prefWidth="800.0" />
+   </children>
+</VBox>

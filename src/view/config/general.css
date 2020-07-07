@@ -1,0 +1,64 @@
+/* 
+    Created on : 01/07/2020, 12:10:08 AM
+    Author     : Esteban Guzmán Ramírez
+*/
+
+#pane{
+    -fx-background-color: #324765;
+}
+#AnchorPane{
+    -fx-background-color: #324765;
+}
+#pascalButton{
+    -fx-border-width: 0;
+    -fx-background-color: #5a58bf;
+    -fx-text-fill: #630a17;
+}
+
+.button{
+    -fx-text-fill: #3c6a6d;
+    -fx-background-color: #87ceb0;
+}
+.button:hover{
+    -fx-background-color: #1e2a3c;
+    -fx-text-fill: #87ceb0;
+}
+
+.button:hover:pressed,
+.button:pressed{
+    -fx-background-color: #1d284f;
+    -fx-text-fill: #87ceb0;
+}
+
+.label{
+    -fx-text-fill: #87ceb0;
+}
+
+
+
+.spinner .text-field {
+    -fx-background-color: #87ceb0;
+    -fx-text-fill: #3c6a6d;
+}
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-body-color: #5aa7a1;
+}
+
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+    /* interpolate color between yellow and red based on first color brightness */
+    -fx-body-color: #324765;
+}
+.spinner .increment-arrow,
+.spinner .decrement-arrow{
+    -fx-background-color: #87ceb0;
+}
+.spinner .increment-arrow-button:hover:pressed,
+.spinner .decrement-arrow-button:hover:pressed,
+.spinner .increment-arrow-button:pressed,
+.spinner .decrement-arrow-button:pressed {
+    /* interpolate color between yellow and red based on first color brightness */
+    -fx-body-color: #1d284f;
+}
+
