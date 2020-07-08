@@ -28,7 +28,7 @@ public class TetrahedralPattern implements PascalPattern {
         for (int row = 3; row < pascalTriangle.length; row++)
             positions.add(new Position(row, 3));
         
-        pascalPositions.add(new PascalPositions(positions, new Color(243, 129, 129)));
+        pascalPositions.add(new PascalPositions(positions, new Color(60,106,109)));
         return pascalPositions;
     }
     
