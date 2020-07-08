@@ -34,5 +34,12 @@ public class PascalPositions {
     public void setColor(Color color) {
         this.color = color;
     }
+
+    @Override
+    public String toString() {
+        return "PascalPositions{" + "positions=" + positions + ", color=" + color + '}';
+    }
+    
+    
     
 }

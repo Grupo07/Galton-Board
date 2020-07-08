@@ -5,9 +5,12 @@
  */
 package controller;
 
+import app.App;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,9 +21,12 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import model.PascalPositions;
 import model.PascalRectangle;
+import model.Position;
 
 /**
  * FXML Controller class
@@ -34,7 +40,7 @@ public class PascalControllerFX implements Initializable {
     @FXML
     private Spinner<Integer> rowSpinner;
     @FXML
-    private ComboBox<?> infoSelect;
+    private ComboBox<String> infoSelect;
     @FXML
     private Button showButton;
     
@@ -44,6 +50,18 @@ public class PascalControllerFX implements Initializable {
             new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 5, 1);
     @FXML
     private Pane pane;
+    
+    private PascalController pascal;
+    private ObservableList<String> infoOptions = FXCollections.observableArrayList(
+        "Diagonals",
+        "Fibonacci",
+        "OddEven",
+        "Powers"
+        );
+    private boolean nullTriangle = true;
+    private ArrayList<PascalRectangle> pascalRectangles;
+    @FXML
+    private Label infoExplain;
 
     /**
      * Initializes the controller class.
@@ -52,17 +70,120 @@ public class PascalControllerFX implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         rowSpinner.setEditable(true);
         rowSpinner.setValueFactory(factoryValues);
-        
+        pascal = new PascalController(rowSpinner.getValue());
         final Tooltip tool = new Tooltip("Vea que loquera");
         rowSpinner.setTooltip(tool);
         tool.setStyle("-fx-background-color: blue;");
+        
+        infoSelect.getItems().addAll(infoOptions);
+        
     }
 
     @FXML
     private void generateTriangle(ActionEvent event) {
+        paintTriangle();
+        nullTriangle = false;
+        generateButton.getStylesheets().clear();
+        generateButton.getStylesheets().add(App.class.getResource("/view/config/general.css").toExternalForm());
+        generateButton.setText("Generate");
+    }
+
+    private void setCoordinates(Integer rows, ArrayList<PascalRectangle> list) {
+        int y = 30;
+        int remainingRows = rows;
+        int currentRow = 1;
+        int count = 0;
+        int x = (triangleWidth / 2) * (rows + 1 - currentRow) + triangleWidth / 2;
+        for (int i = 0; i < list.size(); i++) {
+            list.get(i).setDimensions(x, y, triangleWidth, triangleWidth);
+            count++;
+            if (count == currentRow) {
+                remainingRows += -1;
+                count = 0;
+                x -= ((triangleWidth) * currentRow) - (triangleWidth / 2);
+                currentRow++;
+                y += triangleWidth;
+
+            } else {
+                x += triangleWidth;
+            }
+        }
+    }
+
+    @FXML
+    private void showInfo(ActionEvent event) {
+        
+        if (infoSelect.getValue() == null) {
+            infoSelect.getStylesheets().clear();
+            infoSelect.getStylesheets().add(App.class.getResource("/view/config/error.css").toExternalForm());
+        } else {
+            infoSelect.getStylesheets().clear();
+            infoSelect.getStylesheets().add(App.class.getResource("/view/config/general.css").toExternalForm());
+            paintTriangle();
+            String pattern = infoSelect.getValue().toLowerCase();
+            ArrayList<PascalPositions> patternList = new ArrayList<PascalPositions>();
+            String explain = "";
+            if (pattern.equals("diagonals")) {
+                patternList = pascal.getPascalPattern("first");
+                patternList.addAll(pascal.getPascalPattern("second"));
+                patternList.addAll(pascal.getPascalPattern("third"));
+                patternList.addAll(pascal.getPascalPattern("fourth"));
+                explain = pascal.getPatternInfo("first");
+                explain += "\n" + pascal.getPatternInfo("second");
+                explain += "\n" + pascal.getPatternInfo("third");
+                explain += "\n" + pascal.getPatternInfo("fourh");
+            } else {
+                explain = pascal.getPatternInfo(pattern);
+                patternList = pascal.getPascalPattern(pattern);
+            }
+            int row = rowSpinner.getValue();
+            for (PascalPositions pascalPosition : patternList) {
+                for (Position position : pascalPosition.getPositions()) {
+                    int x = searchX(row, position.getColumn(), position.getRow());
+                    int y = (position.getRow() * triangleWidth) + 30;
+                    String color = "rgb(" + pascalPosition.getColor().getRed()
+                            + "," + pascalPosition.getColor().getGreen()
+                            + "," + pascalPosition.getColor().getBlue()
+                            + ")";
+                    Rectangle rectangle = new Rectangle(x, y,
+                            triangleWidth, triangleWidth);
+                    rectangle.setFill(Color.TRANSPARENT);
+                    rectangle.setStyle("-fx-stroke:" + color
+                            + "; -fx-stroke-width: 10;"
+                            + "-fx-stroke-type:INSIDE");
+                    pane.getChildren().add(rectangle);
+                }
+            }
+            generateButton.setText("Reset");
+            infoExplain.setText("Info explain:\n"+explain);
+            infoExplain.setStyle("-fx-border-color: #87ceb0");
+            pane.getChildren().add(infoExplain);
+        }
+    }
+    
+    private int searchX(int rows, int wantColum, int wantRow){
+        int x = (triangleWidth / 2) * (rows) + triangleWidth/2;
+        for (int row = 0; row <= wantRow; row++) {
+            for (int colum = 0; colum <= row; colum++) {
+                if (wantColum == colum && wantRow == row) {
+                    return x;
+                } else {
+                    if (colum == row) {
+                        x -= ((triangleWidth) * (row + 1)) - (triangleWidth / 2);
+                    } else {
+                        x += triangleWidth;
+                    }
+
+                }
+            }
+        }
+        return 0;
+    }
+
+    private void paintTriangle() {
         pane.getChildren().clear();
-        PascalController pascal = new PascalController(rowSpinner.getValue());
-        ArrayList<PascalRectangle> pascalRectangles = pascal.getPascalRectangles();
+        pascal.updateTriangleHeight(rowSpinner.getValue());
+        pascalRectangles = pascal.getPascalRectangles();
         setCoordinates(rowSpinner.getValue(), pascalRectangles);
         for (int i = 0; i < pascalRectangles.size(); i++) {
             Rectangle rectangle = new Rectangle(
@@ -86,32 +207,6 @@ public class PascalControllerFX implements Initializable {
             }
             pane.getChildren().addAll(rectangle,binomialLabel);
         }
-        
-        
     }
-
-    private void setCoordinates(Integer rows, ArrayList<PascalRectangle> list) {
-        int y = 30;
-        int remainingRows = rows;
-        int currentRow = 1;
-        int count = 0;
-        int x = (triangleWidth / 2) * (rows + 1 - currentRow) + triangleWidth/2;
-        for (int i = 0; i < list.size(); i++) {
-            list.get(i).setDimensions(x, y, triangleWidth, triangleWidth);
-            count++;
-            if (count == currentRow) {
-                remainingRows += -1;
-                count = 0;
-                x -= ((triangleWidth) * currentRow) - (triangleWidth / 2);
-                currentRow++;
-                y += triangleWidth;
-
-            } else {
-                x += triangleWidth;
-            }
-        }
-    }
-
-    
     
 }

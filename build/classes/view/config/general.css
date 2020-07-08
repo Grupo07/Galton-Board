@@ -18,6 +18,7 @@
 .button{
     -fx-text-fill: #3c6a6d;
     -fx-background-color: #87ceb0;
+    -fx-pref-width: 70;
 }
 .button:hover{
     -fx-background-color: #1e2a3c;
@@ -34,7 +35,9 @@
     -fx-text-fill: #87ceb0;
 }
 
-
+.spinner{
+    -fx-pref-width: 70;
+}
 
 .spinner .text-field {
     -fx-background-color: #87ceb0;
@@ -43,6 +46,7 @@
 .spinner .increment-arrow-button,
 .spinner .decrement-arrow-button {
     -fx-body-color: #5aa7a1;
+    -fx-border-width: 0;
 }
 
 .spinner .increment-arrow-button:hover,
@@ -60,5 +64,15 @@
 .spinner .decrement-arrow-button:pressed {
     /* interpolate color between yellow and red based on first color brightness */
     -fx-body-color: #1d284f;
+}
+
+.combo-box,
+.combo-box .list-cell{
+    -fx-background-color:#5aa7a1;
+    -fx-text-fill: #c3e6d7;
+    -fx-pref-width: 100;
+}
+.combo-box .arrow {
+    -fx-background-color: #87ceb0;
 }
 

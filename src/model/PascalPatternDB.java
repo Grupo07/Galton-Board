@@ -18,7 +18,7 @@ public class PascalPatternDB {
         database.put("second", "The second diagonal contains all the natural consecutive numbers (1, 2, 3, 4 ...)");
         database.put("third", "The third diagonal contains the triangular numbers (1, 3, 6, 10...)");
         database.put("fourh", "The third diagonal contains the tetrahedral numbers (1, 4, 10, 20...)");
-        database.put("oddEven", "If odd and even numbers have different number, the Sierpinski Triangle pattern can be seen");
+        database.put("oddeven", "If odd and even numbers have different number, the Sierpinski Triangle pattern can be seen");
         database.put("powers", "Summing the rows gives the powers of two");
         database.put("simmetry", "The triangle is perfectly symmetrical");
         database.put("simmetry", "The triangle is perfectly symmetrical");

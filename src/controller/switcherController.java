@@ -37,8 +37,9 @@ public class switcherController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Label label = new Label("Select a mode to start");
-        label.setLayoutX(220);
-        label.setLayoutY(50);
+        label.setStyle("-fx-font-size: 40px;");
+        label.setLayoutX(207);
+        label.setLayoutY(246);
         pane.getChildren().add(label);
         pane.getStylesheets().add(App.class.getResource("/view/config/general.css").toExternalForm());
         pascalButton.getStylesheets().add(App.class.getResource("/view/config/unpressMode.css").toExternalForm());
