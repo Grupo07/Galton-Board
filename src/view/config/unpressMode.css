@@ -1,0 +1,10 @@
+
+/* 
+    Created on : 01/07/2020, 12:10:08 AM
+    Author     : Esteban Guzmán R
+*/
+
+.button{
+    -fx-text-fill: #87ceb0;
+    -fx-background-color: #3c6a6d;
+}
