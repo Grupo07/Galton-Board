@@ -229,7 +229,7 @@ public class PascalControllerFX implements Initializable {
     }
     private void paintPowers(int rows){
         for(int row = 0; row < rows; row++){
-            Label powerLabel = new Label("= "+Math.pow(2, row));
+            Label powerLabel = new Label("= "+(int) Math.pow(2, row));
             powerLabel.setLayoutX(searchX(rows+1,row,row) + triangleWidth);
             powerLabel.setLayoutY( 36 + (row)*triangleWidth);
             pane.getChildren().add(powerLabel);
