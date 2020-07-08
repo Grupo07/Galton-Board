@@ -56,7 +56,8 @@ public class PascalControllerFX implements Initializable {
         "Diagonals",
         "Fibonacci",
         "OddEven",
-        "Powers"
+        "Powers",
+        "Simmetry"
         );
     private boolean nullTriangle = true;
     private ArrayList<PascalRectangle> pascalRectangles;
@@ -123,6 +124,7 @@ public class PascalControllerFX implements Initializable {
             String pattern = infoSelect.getValue().toLowerCase();
             ArrayList<PascalPositions> patternList = new ArrayList<PascalPositions>();
             String explain = "";
+            int row = rowSpinner.getValue();
             if (pattern.equals("diagonals")) {
                 patternList = pascal.getPascalPattern("first");
                 patternList.addAll(pascal.getPascalPattern("second"));
@@ -132,11 +134,24 @@ public class PascalControllerFX implements Initializable {
                 explain += "\n" + pascal.getPatternInfo("second");
                 explain += "\n" + pascal.getPatternInfo("third");
                 explain += "\n" + pascal.getPatternInfo("fourh");
+            } else if(pattern.equals("simmetry")){
+                explain = pascal.getPatternInfo(pattern);
+                int withd = (row/2)*triangleWidth;
+                if(row % 2 != 0){
+                    withd += triangleWidth/2;
+                }
+                Rectangle sideA = new Rectangle(searchX(row+1,0,row),30,
+                        withd,row*triangleWidth);
+                sideA.setFill(Color.web("#5aa7a1", 0.5));
+                Rectangle sideB = new Rectangle(searchX(row + 1, 0 , 0),30,
+                        withd,row*triangleWidth);
+                sideB.setFill(Color.web("#1d284f", 0.5));
+                pane.getChildren().addAll(sideA,sideB);
             } else {
                 explain = pascal.getPatternInfo(pattern);
                 patternList = pascal.getPascalPattern(pattern);
             }
-            int row = rowSpinner.getValue();
+            
             for (PascalPositions pascalPosition : patternList) {
                 for (Position position : pascalPosition.getPositions()) {
                     int x = searchX(row, position.getColumn(), position.getRow());
