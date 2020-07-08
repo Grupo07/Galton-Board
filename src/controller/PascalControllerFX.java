@@ -147,11 +147,15 @@ public class PascalControllerFX implements Initializable {
                         withd,row*triangleWidth);
                 sideB.setFill(Color.web("#1d284f", 0.5));
                 pane.getChildren().addAll(sideA,sideB);
+            } else if (pattern.equals("powers")){
+                explain = pascal.getPatternInfo(pattern);
+                patternList = pascal.getPascalPattern(pattern);
+                paintPowers(row);
+                
             } else {
                 explain = pascal.getPatternInfo(pattern);
                 patternList = pascal.getPascalPattern(pattern);
             }
-            
             for (PascalPositions pascalPosition : patternList) {
                 for (Position position : pascalPosition.getPositions()) {
                     int x = searchX(row, position.getColumn(), position.getRow());
@@ -221,6 +225,14 @@ public class PascalControllerFX implements Initializable {
                 binomialLabel.setLayoutY(pascalRectangles.get(i).getDrawable().getBounds2D().getCenterY() - 6);
             }
             pane.getChildren().addAll(rectangle,binomialLabel);
+        }
+    }
+    private void paintPowers(int rows){
+        for(int row = 0; row < rows; row++){
+            Label powerLabel = new Label("= "+Math.pow(2, row));
+            powerLabel.setLayoutX(searchX(rows+1,row,row) + triangleWidth);
+            powerLabel.setLayoutY( 36 + (row)*triangleWidth);
+            pane.getChildren().add(powerLabel);
         }
     }
     
