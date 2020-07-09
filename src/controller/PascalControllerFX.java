@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import app.App;
@@ -31,7 +26,7 @@ import model.Position;
 /**
  * FXML Controller class
  *
- * @author esteb
+ * @author Esteban Guzmán Ramírez
  */
 public class PascalControllerFX implements Initializable {
 
@@ -43,22 +38,22 @@ public class PascalControllerFX implements Initializable {
     private ComboBox<String> infoSelect;
     @FXML
     private Button showButton;
-    
+
     private int triangleWidth = 40;
-    
-    SpinnerValueFactory<Integer> factoryValues = 
-            new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 5, 1);
+
+    SpinnerValueFactory<Integer> factoryValues
+            = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 5, 1);
     @FXML
     private Pane pane;
-    
+
     private PascalController pascal;
     private ObservableList<String> infoOptions = FXCollections.observableArrayList(
-        "Diagonals",
-        "Fibonacci",
-        "OddEven",
-        "Powers",
-        "Simmetry"
-        );
+            "Diagonals",
+            "Fibonacci",
+            "OddEven",
+            "Powers",
+            "Simmetry"
+    );
     private boolean nullTriangle = true;
     private ArrayList<PascalRectangle> pascalRectangles;
     @FXML
@@ -75,9 +70,9 @@ public class PascalControllerFX implements Initializable {
         final Tooltip tool = new Tooltip("Vea que loquera");
         rowSpinner.setTooltip(tool);
         tool.setStyle("-fx-background-color: blue;");
-        
+
         infoSelect.getItems().addAll(infoOptions);
-        
+
     }
 
     @FXML
@@ -113,7 +108,7 @@ public class PascalControllerFX implements Initializable {
 
     @FXML
     private void showInfo(ActionEvent event) {
-        
+
         if (infoSelect.getValue() == null) {
             infoSelect.getStylesheets().clear();
             infoSelect.getStylesheets().add(App.class.getResource("/view/config/error.css").toExternalForm());
@@ -134,24 +129,24 @@ public class PascalControllerFX implements Initializable {
                 explain += "\n" + pascal.getPatternInfo("second");
                 explain += "\n" + pascal.getPatternInfo("third");
                 explain += "\n" + pascal.getPatternInfo("fourh");
-            } else if(pattern.equals("simmetry")){
+            } else if (pattern.equals("simmetry")) {
                 explain = pascal.getPatternInfo(pattern);
-                int withd = (row/2)*triangleWidth;
-                if(row % 2 != 0){
-                    withd += triangleWidth/2;
+                int withd = (row / 2) * triangleWidth;
+                if (row % 2 != 0) {
+                    withd += triangleWidth / 2;
                 }
-                Rectangle sideA = new Rectangle(searchX(row+1,0,row),30,
-                        withd,row*triangleWidth);
+                Rectangle sideA = new Rectangle(searchX(row + 1, 0, row), 30,
+                        withd, row * triangleWidth);
                 sideA.setFill(Color.web("#5aa7a1", 0.5));
-                Rectangle sideB = new Rectangle(searchX(row + 1, 0 , 0),30,
-                        withd,row*triangleWidth);
+                Rectangle sideB = new Rectangle(searchX(row + 1, 0, 0), 30,
+                        withd, row * triangleWidth);
                 sideB.setFill(Color.web("#1d284f", 0.5));
-                pane.getChildren().addAll(sideA,sideB);
-            } else if (pattern.equals("powers")){
+                pane.getChildren().addAll(sideA, sideB);
+            } else if (pattern.equals("powers")) {
                 explain = pascal.getPatternInfo(pattern);
                 patternList = pascal.getPascalPattern(pattern);
                 paintPowers(row);
-                
+
             } else {
                 explain = pascal.getPatternInfo(pattern);
                 patternList = pascal.getPascalPattern(pattern);
@@ -174,14 +169,14 @@ public class PascalControllerFX implements Initializable {
                 }
             }
             generateButton.setText("Reset");
-            infoExplain.setText("Info explain:\n"+explain);
+            infoExplain.setText("Info explain:\n" + explain);
             infoExplain.setStyle("-fx-border-color: #87ceb0");
             pane.getChildren().add(infoExplain);
         }
     }
-    
-    private int searchX(int rows, int wantColum, int wantRow){
-        int x = (triangleWidth / 2) * (rows) + triangleWidth/2;
+
+    private int searchX(int rows, int wantColum, int wantRow) {
+        int x = (triangleWidth / 2) * (rows) + triangleWidth / 2;
         for (int row = 0; row <= wantRow; row++) {
             for (int colum = 0; colum <= row; colum++) {
                 if (wantColum == colum && wantRow == row) {
@@ -212,28 +207,29 @@ public class PascalControllerFX implements Initializable {
             rectangle.setFill(Paint.valueOf("#87ceb0"));
             rectangle.setStyle("-fx-stroke: #5aa7a1; -fx-stroke-width: 1;");
             int binomialNumber = pascalRectangles.get(i).getBinomialCoefficient();
-            Label binomialLabel = new Label(binomialNumber+"");
+            Label binomialLabel = new Label(binomialNumber + "");
             binomialLabel.setStyle("-fx-text-fill: #324765;");
             if (binomialNumber > 99) {
                 binomialLabel.setLayoutX(pascalRectangles.get(i).getDrawable().getBounds2D().getCenterX() - 10);
                 binomialLabel.setLayoutY(pascalRectangles.get(i).getDrawable().getBounds2D().getCenterY() - 6);
-            } else if (binomialNumber > 9 ) {
+            } else if (binomialNumber > 9) {
                 binomialLabel.setLayoutX(pascalRectangles.get(i).getDrawable().getBounds2D().getCenterX() - 6);
                 binomialLabel.setLayoutY(pascalRectangles.get(i).getDrawable().getBounds2D().getCenterY() - 6);
             } else {
                 binomialLabel.setLayoutX(pascalRectangles.get(i).getDrawable().getBounds2D().getCenterX() - 2);
                 binomialLabel.setLayoutY(pascalRectangles.get(i).getDrawable().getBounds2D().getCenterY() - 6);
             }
-            pane.getChildren().addAll(rectangle,binomialLabel);
+            pane.getChildren().addAll(rectangle, binomialLabel);
         }
     }
-    private void paintPowers(int rows){
-        for(int row = 0; row < rows; row++){
-            Label powerLabel = new Label("= "+Math.pow(2, row));
-            powerLabel.setLayoutX(searchX(rows+1,row,row) + triangleWidth);
-            powerLabel.setLayoutY( 36 + (row)*triangleWidth);
+
+    private void paintPowers(int rows) {
+        for (int row = 0; row < rows; row++) {
+            Label powerLabel = new Label("= " + (int) Math.pow(2, row));
+            powerLabel.setLayoutX(searchX(rows + 1, row, row) + triangleWidth);
+            powerLabel.setLayoutY(36 + (row) * triangleWidth);
             pane.getChildren().add(powerLabel);
         }
     }
-    
+
 }
