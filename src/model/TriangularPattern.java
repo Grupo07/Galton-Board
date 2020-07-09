@@ -28,7 +28,7 @@ public class TriangularPattern implements PascalPattern {
         for (int row = 2; row < pascalTriangle.length; row++)
             positions.add(new Position(row, 2));
         
-        pascalPositions.add(new PascalPositions(positions, new Color(204, 175, 175)));
+        pascalPositions.add(new PascalPositions(positions, new Color(90,167,161)));
         return pascalPositions;
     }
     

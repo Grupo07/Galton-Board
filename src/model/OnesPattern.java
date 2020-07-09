@@ -26,7 +26,7 @@ public class OnesPattern implements PascalPattern {
         for (int row = 0; row < pascalTriangle.length; row++)
             positions.add(new Position(row, 0));
         
-        pascalPositions.add(new PascalPositions(positions, new Color(149, 225, 211)));
+        pascalPositions.add(new PascalPositions(positions, new Color(207,235,223)));
         
         return pascalPositions;
     }

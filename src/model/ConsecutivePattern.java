@@ -28,7 +28,7 @@ public class ConsecutivePattern implements PascalPattern {
         for (int row = 1; row < pascalTriangle.length; row++)
             positions.add(new Position(row, 1));
         
-        pascalPositions.add(new PascalPositions(positions, new Color(243, 129, 129)));
+        pascalPositions.add(new PascalPositions(positions, new Color(29,40,79)));
         return pascalPositions;
         
     }

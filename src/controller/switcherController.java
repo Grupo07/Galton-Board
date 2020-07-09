@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import app.App;
@@ -21,7 +16,7 @@ import javafx.scene.layout.Pane;
 
 /**
  *
- * @author esteb
+ * @author Esteban Guzmán Ramírez
  */
 public class switcherController implements Initializable {
 
@@ -31,9 +26,7 @@ public class switcherController implements Initializable {
     private Button galtonButton;
     @FXML
     private Pane pane;
-    
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Label label = new Label("Select a mode to start");
@@ -44,7 +37,7 @@ public class switcherController implements Initializable {
         pane.getStylesheets().add(App.class.getResource("/view/config/general.css").toExternalForm());
         pascalButton.getStylesheets().add(App.class.getResource("/view/config/unpressMode.css").toExternalForm());
         galtonButton.getStylesheets().add(App.class.getResource("/view/config/unpressMode.css").toExternalForm());
-    }    
+    }
 
     @FXML
     private void loadPascalView(ActionEvent event) {
@@ -75,5 +68,5 @@ public class switcherController implements Initializable {
             Logger.getLogger(switcherController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }

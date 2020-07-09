@@ -19,11 +19,11 @@ public class PowersPattern implements PascalPattern {
      */
     @Override
     public ArrayList<PascalPositions> getPattern(int[][] pascalTriangle) {
-        Color[] colors = new Color[]{new Color(241, 227, 203), new Color(61, 132, 168), 
+        Color[] colors = new Color[]{new Color(67,103,88), new Color(61, 132, 168), 
                                      new Color(99, 183, 175), new Color(171, 240, 233), 
-                                     new Color(212, 243, 239), new Color(238, 133, 114),
-                                     new Color(249, 179, 132), new Color(202, 81, 22), 
-                                     new Color(157, 51, 21), new Color(226, 62, 87)};
+                                     new Color(40,56,81), new Color(17, 24, 47),
+                                     new Color(207,235,223), new Color(46,72,61), 
+                                     new Color(64,70,88), new Color(104,133,121)};
         
         ArrayList<PascalPositions> pascalPositions = new ArrayList<>();
         

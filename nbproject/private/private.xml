@@ -3,10 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/ProjectsNetbeans/Galton-Board/src/controller/switcherController.java</file>
-            <file>file:/D:/ProjectsNetbeans/Galton-Board/src/controller/DropBallThread.java</file>
+            <file>file:/D:/ProjectsNetbeans/Galton-Board/src/model/TetrahedralPattern.java</file>
+            <file>file:/D:/ProjectsNetbeans/Galton-Board/src/model/OnesPattern.java</file>
+            <file>file:/D:/ProjectsNetbeans/Galton-Board/src/model/TriangularPattern.java</file>
             <file>file:/D:/ProjectsNetbeans/Galton-Board/src/app/App.java</file>
-            <file>file:/D:/ProjectsNetbeans/Galton-Board/src/controller/GaltonControllerFX.java</file>
+            <file>file:/D:/ProjectsNetbeans/Galton-Board/src/controller/PascalControllerFX.java</file>
+            <file>file:/D:/ProjectsNetbeans/Galton-Board/src/controller/PascalController.java</file>
+            <file>file:/D:/ProjectsNetbeans/Galton-Board/src/model/ConsecutivePattern.java</file>
+            <file>file:/D:/ProjectsNetbeans/Galton-Board/src/galton/board/GaltonBoard.java</file>
         </group>
     </open-files>
 </project-private>

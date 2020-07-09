@@ -34,7 +34,7 @@ public class OddEvenPattern implements PascalPattern {
             
         }
         
-        pascalPositions.add(new PascalPositions(positions, new Color(48, 176, 161)));
+        pascalPositions.add(new PascalPositions(positions, new Color(29,40,79)));
         
         return pascalPositions;
     }
