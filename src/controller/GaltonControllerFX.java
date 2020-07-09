@@ -1,5 +1,6 @@
 package controller;
 
+import static java.lang.Thread.sleep;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -32,13 +33,17 @@ import model.GaltonCircle;
 public class GaltonControllerFX implements Initializable {
 
     @FXML
+    private Pane pane;
+    @FXML
     private Button simulateButton;
     @FXML
     private Spinner<Integer> rowsSpinner;
     @FXML
-    private Spinner<Integer> speedSpinner;
+    private Spinner<Integer> ballsSpinner;
     @FXML
     private Spinner<Double> probabilitySpinner;
+    @FXML
+    private Spinner<Integer> speedSpinner;
 
     SpinnerValueFactory<Integer> factoryValuesRows
             = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 5, 1);
@@ -48,14 +53,15 @@ public class GaltonControllerFX implements Initializable {
 
     SpinnerValueFactory<Double> factoryValuesProbability
             = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 1, 0.5, 0.1);
-    @FXML
-    private Pane pane;
-
+    SpinnerValueFactory<Integer> factoryValuesSpeed
+            = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 4, 1);
+    
     private GaltonController galton;
     private int triangleWidth = 40;
     private Random rand = new Random();
     private Label labelCounts[];
     private int countFinals[];
+    
 
     /**
      * Initializes the controller class.
@@ -64,10 +70,12 @@ public class GaltonControllerFX implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         rowsSpinner.setEditable(true);
         rowsSpinner.setValueFactory(factoryValuesRows);
-        speedSpinner.setEditable(true);
-        speedSpinner.setValueFactory(factoryValuesBalls);
+        ballsSpinner.setEditable(true);
+        ballsSpinner.setValueFactory(factoryValuesBalls);
         probabilitySpinner.setEditable(true);
         probabilitySpinner.setValueFactory(factoryValuesProbability);
+        speedSpinner.setEditable(true);
+        speedSpinner.setValueFactory(factoryValuesSpeed);
         galton = new GaltonController(rowsSpinner.getValue());
     }
 
@@ -114,7 +122,7 @@ public class GaltonControllerFX implements Initializable {
     }
 
     private void dropBalls() throws InterruptedException {
-        for (int i = 0; i < speedSpinner.getValue(); i++) {
+        for (int i = 0; i < ballsSpinner.getValue(); i++) {
             Circle circle = new Circle(0, 0, triangleWidth / 4);
             circle.setFill(Color.rgb(rand.nextInt(200), rand.nextInt(200), rand.nextInt(200)));
             circle.setStyle("-fx-stroke: #5aa7a1; -fx-stroke-width: 1;");
@@ -128,7 +136,7 @@ public class GaltonControllerFX implements Initializable {
                     MoveTo moveTo = new MoveTo(x, y);
                     path.getElements().add(moveTo);
                     PathTransition pathTransition = new PathTransition();
-                    pathTransition.setDuration(Duration.millis(1000));
+                    pathTransition.setDuration(Duration.millis(speedSpinner.getValue()*1000));
                     GaltonCircle galtonCircle = galton.generateCircle();
                     increaseAmountBalls(galtonCircle.getPath());
                     for (int j = 0; j < galtonCircle.getPath().length; j++) {
@@ -149,7 +157,6 @@ public class GaltonControllerFX implements Initializable {
                         public void run() {
                             pathTransition.play();
                             updateCounters();
-
                         }
                     });
                 }
