@@ -41,10 +41,10 @@ public class GaltonControllerFX implements Initializable {
     private Spinner<Double> probabilitySpinner;
 
     SpinnerValueFactory<Integer> factoryValuesRows
-            = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 2, 1);
+            = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 5, 1);
 
     SpinnerValueFactory<Integer> factoryValuesBalls
-            = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10000, 1, 1);
+            = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10000, 100, 1);
 
     SpinnerValueFactory<Double> factoryValuesProbability
             = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 1, 0.5, 0.1);
