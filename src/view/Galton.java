@@ -1,6 +1,7 @@
-package controller;
+package view;
 
-import static java.lang.Thread.sleep;
+import controller.GaltonController;
+import view.Switcher;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -30,7 +31,7 @@ import model.GaltonCircle;
  *
  * @author Esteban Guzmán Ramírez
  */
-public class GaltonControllerFX implements Initializable {
+public class Galton implements Initializable {
 
     @FXML
     private Pane pane;
@@ -45,27 +46,29 @@ public class GaltonControllerFX implements Initializable {
     @FXML
     private Spinner<Integer> speedSpinner;
 
-    
-    
     private GaltonController galton;
     private int triangleWidth = 40;
     private Random rand = new Random();
     private Label labelCounts[];
     private int countFinals[];
-    
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        int rows = switcherController.getRows();
+        int rows = Switcher.getRows();
         initSpinners(rows);
         galton = new GaltonController(rows);
         drawDots(rows);
     }
 
-    private void initSpinners(int rows){
+    /**
+     * Define fatory values of spinners
+     *
+     * @param rows
+     */
+    private void initSpinners(int rows) {
         SpinnerValueFactory<Integer> factoryValuesRows
                 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, rows, 1);
         rowsSpinner.setEditable(true);
@@ -83,6 +86,12 @@ public class GaltonControllerFX implements Initializable {
         speedSpinner.setEditable(true);
         speedSpinner.setValueFactory(factoryValuesSpeed);
     }
+
+    /**
+     * start galton simulation
+     *
+     * @param event onClick of simulateButton
+     */
     @FXML
     private void simulateGaltonBoard(ActionEvent event) {
         pane.getChildren().clear();
@@ -97,11 +106,16 @@ public class GaltonControllerFX implements Initializable {
         try {
             dropBalls();
         } catch (InterruptedException ex) {
-            Logger.getLogger(GaltonControllerFX.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Galton.class.getName()).log(Level.SEVERE, null, ex);
         }
-        switcherController.setRows(rowsSpinner.getValue());
+        Switcher.setRows(rowsSpinner.getValue());
     }
 
+    /**
+     * Draw dots of galton board
+     *
+     * @param rows triangle height
+     */
     private void drawDots(int rows) {
         int y = 40;
         int remainingRows = rows;
@@ -126,6 +140,11 @@ public class GaltonControllerFX implements Initializable {
 
     }
 
+    /**
+     * Draw balls droping in galton board
+     *
+     * @throws InterruptedException runneable
+     */
     private void dropBalls() throws InterruptedException {
         for (int i = 0; i < ballsSpinner.getValue(); i++) {
             Circle circle = new Circle(0, 0, triangleWidth / 4);
@@ -171,6 +190,11 @@ public class GaltonControllerFX implements Initializable {
 
     }
 
+    /**
+     * save the final position of one ball
+     *
+     * @param path path of one ball
+     */
     private void increaseAmountBalls(String[] path) {
         float position = (rowsSpinner.getValue() / 2);
         if (rowsSpinner.getValue() % 2 != 0) {
@@ -187,12 +211,18 @@ public class GaltonControllerFX implements Initializable {
         countFinals[(int) position] += 1;
     }
 
+    /**
+     * Update counters labels
+     */
     private void updateCounters() {
         for (int i = 0; i < labelCounts.length; i++) {
             labelCounts[i].textProperty().bind(new SimpleIntegerProperty(countFinals[i]).asString());
         }
     }
 
+    /**
+     * init labels of counters
+     */
     private void paintCounters() {
         int x = getX(0, rowsSpinner.getValue()) + 15;
         int y = 40 + triangleWidth * rowsSpinner.getValue();

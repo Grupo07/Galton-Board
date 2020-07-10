@@ -20,7 +20,7 @@ public class GaltonBoard extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/switcherFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/SwitcherView.fxml"));
         
         Scene scene = new Scene(root);
         

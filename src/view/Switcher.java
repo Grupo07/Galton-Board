@@ -1,4 +1,4 @@
-package controller;
+package view;
 
 import app.App;
 import java.io.IOException;
@@ -11,14 +11,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
 /**
  *
  * @author Esteban Guzmán Ramírez
  */
-public class switcherController implements Initializable {
+public class Switcher implements Initializable {
 
     @FXML
     private Button pascalButton;
@@ -40,10 +39,14 @@ public class switcherController implements Initializable {
             pane.getChildren().add(newPanel);
             
         } catch (IOException ex) {
-            Logger.getLogger(switcherController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Switcher.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    /**
+     * init Pascal mode
+     * @param event onClick PascalModeButton
+     */
     @FXML
     private void loadPascalView(ActionEvent event) {
         try {
@@ -55,10 +58,14 @@ public class switcherController implements Initializable {
             pascalButton.getStylesheets().add(App.class.getResource("/view/config/pressedMode.css").toExternalForm());
             galtonButton.getStylesheets().add(App.class.getResource("/view/config/unpressMode.css").toExternalForm());
         } catch (IOException ex) {
-            Logger.getLogger(switcherController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Switcher.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    /**
+     * init Galton Mode
+     * @param event onClick GaltonModeButton
+     */
     @FXML
     private void loadGaltonView(ActionEvent event) {
         try {
@@ -70,7 +77,7 @@ public class switcherController implements Initializable {
             galtonButton.getStylesheets().add(App.class.getResource("/view/config/pressedMode.css").toExternalForm());
             pascalButton.getStylesheets().add(App.class.getResource("/view/config/unpressMode.css").toExternalForm());
         } catch (IOException ex) {
-            Logger.getLogger(switcherController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Switcher.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -79,7 +86,7 @@ public class switcherController implements Initializable {
     }
 
     public static void setRows(int rows) {
-        switcherController.rows = rows;
+        Switcher.rows = rows;
     }
     
     

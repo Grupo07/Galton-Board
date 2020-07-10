@@ -1,6 +1,8 @@
-package controller;
+package view;
 
+import view.Switcher;
 import app.App;
+import controller.PascalController;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -14,7 +16,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -28,7 +29,7 @@ import model.Position;
  *
  * @author Esteban Guzmán Ramírez
  */
-public class PascalControllerFX implements Initializable {
+public class Pascal implements Initializable {
 
     @FXML
     private Button generateButton;
@@ -38,28 +39,24 @@ public class PascalControllerFX implements Initializable {
     private ComboBox<String> infoSelect;
     @FXML
     private Button showButton;
-
-    private int triangleWidth = 40;
-
-    
     @FXML
     private Pane pane;
-
-    private PascalController pascal;
-   
-    private boolean nullTriangle = true;
-    private ArrayList<PascalRectangle> pascalRectangles;
     @FXML
     private Label infoExplain;
+
+    private PascalController pascal;
+    private int triangleWidth = 40;
+    private boolean nullTriangle = true;
+    private ArrayList<PascalRectangle> pascalRectangles;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        int rows = switcherController.getRows();
+        int rows = Switcher.getRows();
         SpinnerValueFactory<Integer> factoryValues
-            = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, rows, 1);
+                = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, rows, 1);
         rowSpinner.setEditable(true);
         rowSpinner.setValueFactory(factoryValues);
         pascal = new PascalController(rows);
@@ -74,6 +71,11 @@ public class PascalControllerFX implements Initializable {
         paintTriangle();
     }
 
+    /**
+     * Generate a pascal triagle
+     *
+     * @param event onClick of generateButton
+     */
     @FXML
     private void generateTriangle(ActionEvent event) {
         paintTriangle();
@@ -81,9 +83,15 @@ public class PascalControllerFX implements Initializable {
         generateButton.getStylesheets().clear();
         generateButton.getStylesheets().add(App.class.getResource("/view/config/general.css").toExternalForm());
         generateButton.setText("Generate");
-        switcherController.setRows(rowSpinner.getValue());
+        Switcher.setRows(rowSpinner.getValue());
     }
 
+    /**
+     * Set xy of rectangles
+     *
+     * @param rows triangle height
+     * @param list rectangle list
+     */
     private void setCoordinates(Integer rows, ArrayList<PascalRectangle> list) {
         int y = 30;
         int remainingRows = rows;
@@ -106,6 +114,11 @@ public class PascalControllerFX implements Initializable {
         }
     }
 
+    /**
+     * Paint info and markers
+     *
+     * @param event onClick showButton
+     */
     @FXML
     private void showInfo(ActionEvent event) {
 
@@ -172,10 +185,18 @@ public class PascalControllerFX implements Initializable {
             infoExplain.setText("Info explain:\n" + explain);
             infoExplain.setStyle("-fx-border-color: #87ceb0");
             pane.getChildren().add(infoExplain);
-            switcherController.setRows(rowSpinner.getValue());
+            Switcher.setRows(rowSpinner.getValue());
         }
     }
 
+    /**
+     * getX in traingle pascal
+     *
+     * @param rows triangle height
+     * @param wantColum position in x of triangle
+     * @param wantRow position in y of triangle
+     * @return position in x
+     */
     private int searchX(int rows, int wantColum, int wantRow) {
         int x = (triangleWidth / 2) * (rows) + triangleWidth / 2;
         for (int row = 0; row <= wantRow; row++) {
@@ -195,6 +216,9 @@ public class PascalControllerFX implements Initializable {
         return 0;
     }
 
+    /**
+     * paint the trinagle
+     */
     private void paintTriangle() {
         pane.getChildren().clear();
         pascal.updateTriangleHeight(rowSpinner.getValue());
@@ -224,6 +248,11 @@ public class PascalControllerFX implements Initializable {
         }
     }
 
+    /**
+     * paint powers of info
+     *
+     * @param rows
+     */
     private void paintPowers(int rows) {
         for (int row = 0; row < rows; row++) {
             Label powerLabel = new Label("= " + (int) Math.pow(2, row));

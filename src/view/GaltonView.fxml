@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GaltonControllerFX">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Galton">
    <children>
       <Button fx:id="simulateButton" layoutX="417.0" layoutY="25.0" mnemonicParsing="false" onAction="#simulateGaltonBoard" text="Simulate" />
       <Spinner fx:id="rowsSpinner" layoutX="14.0" layoutY="25.0" prefHeight="25.0" prefWidth="84.0" />
