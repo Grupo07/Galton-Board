@@ -45,16 +45,7 @@ public class GaltonControllerFX implements Initializable {
     @FXML
     private Spinner<Integer> speedSpinner;
 
-    SpinnerValueFactory<Integer> factoryValuesRows
-            = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 5, 1);
-
-    SpinnerValueFactory<Integer> factoryValuesBalls
-            = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10000, 100, 1);
-
-    SpinnerValueFactory<Double> factoryValuesProbability
-            = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 1, 0.5, 0.1);
-    SpinnerValueFactory<Integer> factoryValuesSpeed
-            = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 4, 1);
+    
     
     private GaltonController galton;
     private int triangleWidth = 40;
@@ -68,17 +59,30 @@ public class GaltonControllerFX implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        rowsSpinner.setEditable(true);
-        rowsSpinner.setValueFactory(factoryValuesRows);
-        ballsSpinner.setEditable(true);
-        ballsSpinner.setValueFactory(factoryValuesBalls);
-        probabilitySpinner.setEditable(true);
-        probabilitySpinner.setValueFactory(factoryValuesProbability);
-        speedSpinner.setEditable(true);
-        speedSpinner.setValueFactory(factoryValuesSpeed);
-        galton = new GaltonController(rowsSpinner.getValue());
+        int rows = switcherController.getRows();
+        initSpinners(rows);
+        galton = new GaltonController(rows);
+        drawDots(rows);
     }
 
+    private void initSpinners(int rows){
+        SpinnerValueFactory<Integer> factoryValuesRows
+                = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, rows, 1);
+        rowsSpinner.setEditable(true);
+        rowsSpinner.setValueFactory(factoryValuesRows);
+        SpinnerValueFactory<Integer> factoryValuesBalls
+                = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10000, 100, 1);
+        ballsSpinner.setEditable(true);
+        ballsSpinner.setValueFactory(factoryValuesBalls);
+        SpinnerValueFactory<Double> factoryValuesProbability
+                = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 1, 0.5, 0.1);
+        probabilitySpinner.setEditable(true);
+        probabilitySpinner.setValueFactory(factoryValuesProbability);
+        SpinnerValueFactory<Integer> factoryValuesSpeed
+                = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 4, 1);
+        speedSpinner.setEditable(true);
+        speedSpinner.setValueFactory(factoryValuesSpeed);
+    }
     @FXML
     private void simulateGaltonBoard(ActionEvent event) {
         pane.getChildren().clear();
@@ -95,6 +99,7 @@ public class GaltonControllerFX implements Initializable {
         } catch (InterruptedException ex) {
             Logger.getLogger(GaltonControllerFX.class.getName()).log(Level.SEVERE, null, ex);
         }
+        switcherController.setRows(rowsSpinner.getValue());
     }
 
     private void drawDots(int rows) {
@@ -136,7 +141,7 @@ public class GaltonControllerFX implements Initializable {
                     MoveTo moveTo = new MoveTo(x, y);
                     path.getElements().add(moveTo);
                     PathTransition pathTransition = new PathTransition();
-                    pathTransition.setDuration(Duration.millis(speedSpinner.getValue()*1000));
+                    pathTransition.setDuration(Duration.millis(10000 / speedSpinner.getValue()));
                     GaltonCircle galtonCircle = galton.generateCircle();
                     increaseAmountBalls(galtonCircle.getPath());
                     for (int j = 0; j < galtonCircle.getPath().length; j++) {

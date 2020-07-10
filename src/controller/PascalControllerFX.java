@@ -41,19 +41,12 @@ public class PascalControllerFX implements Initializable {
 
     private int triangleWidth = 40;
 
-    SpinnerValueFactory<Integer> factoryValues
-            = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 5, 1);
+    
     @FXML
     private Pane pane;
 
     private PascalController pascal;
-    private ObservableList<String> infoOptions = FXCollections.observableArrayList(
-            "Diagonals",
-            "Fibonacci",
-            "OddEven",
-            "Powers",
-            "Simmetry"
-    );
+   
     private boolean nullTriangle = true;
     private ArrayList<PascalRectangle> pascalRectangles;
     @FXML
@@ -64,15 +57,21 @@ public class PascalControllerFX implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        int rows = switcherController.getRows();
+        SpinnerValueFactory<Integer> factoryValues
+            = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, rows, 1);
         rowSpinner.setEditable(true);
         rowSpinner.setValueFactory(factoryValues);
-        pascal = new PascalController(rowSpinner.getValue());
-        final Tooltip tool = new Tooltip("Vea que loquera");
-        rowSpinner.setTooltip(tool);
-        tool.setStyle("-fx-background-color: blue;");
-
+        pascal = new PascalController(rows);
+        ObservableList<String> infoOptions = FXCollections.observableArrayList(
+                "Diagonals",
+                "Fibonacci",
+                "OddEven",
+                "Powers",
+                "Simmetry"
+        );
         infoSelect.getItems().addAll(infoOptions);
-
+        paintTriangle();
     }
 
     @FXML
@@ -82,6 +81,7 @@ public class PascalControllerFX implements Initializable {
         generateButton.getStylesheets().clear();
         generateButton.getStylesheets().add(App.class.getResource("/view/config/general.css").toExternalForm());
         generateButton.setText("Generate");
+        switcherController.setRows(rowSpinner.getValue());
     }
 
     private void setCoordinates(Integer rows, ArrayList<PascalRectangle> list) {
@@ -172,6 +172,7 @@ public class PascalControllerFX implements Initializable {
             infoExplain.setText("Info explain:\n" + explain);
             infoExplain.setStyle("-fx-border-color: #87ceb0");
             pane.getChildren().add(infoExplain);
+            switcherController.setRows(rowSpinner.getValue());
         }
     }
 

@@ -13,6 +13,6 @@
             <Button id="galtonButton" fx:id="galtonButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadGaltonView" prefHeight="30.0" prefWidth="400.0" text="Galton Mode" />
          </children>
       </HBox>
-      <Pane fx:id="pane" prefHeight="555.0" prefWidth="800.0" />
+      <Pane fx:id="pane" prefHeight="555.0" prefWidth="800.0" style="-fx-background-color: #324765;" />
    </children>
 </VBox>

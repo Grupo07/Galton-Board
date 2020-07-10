@@ -26,17 +26,22 @@ public class switcherController implements Initializable {
     private Button galtonButton;
     @FXML
     private Pane pane;
+    
+    private static int rows = 8;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Label label = new Label("Select a mode to start");
-        label.setStyle("-fx-font-size: 40px;");
-        label.setLayoutX(207);
-        label.setLayoutY(246);
-        pane.getChildren().add(label);
+        
         pane.getStylesheets().add(App.class.getResource("/view/config/general.css").toExternalForm());
-        pascalButton.getStylesheets().add(App.class.getResource("/view/config/unpressMode.css").toExternalForm());
+        pascalButton.getStylesheets().add(App.class.getResource("/view/config/pressedMode.css").toExternalForm());
         galtonButton.getStylesheets().add(App.class.getResource("/view/config/unpressMode.css").toExternalForm());
+        try {
+            Pane newPanel = (Pane) FXMLLoader.load(getClass().getResource("/view/PascalView.fxml"));
+            pane.getChildren().add(newPanel);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(switcherController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -68,5 +73,15 @@ public class switcherController implements Initializable {
             Logger.getLogger(switcherController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public static int getRows() {
+        return rows;
+    }
+
+    public static void setRows(int rows) {
+        switcherController.rows = rows;
+    }
+    
+    
 
 }
