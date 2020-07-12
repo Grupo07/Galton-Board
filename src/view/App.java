@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package galton.board;
+package view;
 
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,14 +15,12 @@ import javafx.stage.Stage;
  *
  * @author esteb
  */
-public class GaltonBoard extends Application {
+public class App extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/SwitcherView.fxml"));
-        
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
         stage.show();
     }

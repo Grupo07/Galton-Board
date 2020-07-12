@@ -1,7 +1,6 @@
 package view;
 
 import view.Switcher;
-import app.App;
 import controller.PascalController;
 import java.net.URL;
 import java.util.ArrayList;
