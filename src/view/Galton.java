@@ -31,6 +31,7 @@ import model.GaltonCircle;
  *
  * @author Esteban Guzmán Ramírez
  */
+
 public class Galton implements Initializable {
 
     @FXML
@@ -66,7 +67,7 @@ public class Galton implements Initializable {
     /**
      * Define fatory values of spinners
      *
-     * @param rows
+     * @param rows rows
      */
     private void initSpinners(int rows) {
         SpinnerValueFactory<Integer> factoryValuesRows

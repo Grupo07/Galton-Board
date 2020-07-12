@@ -154,10 +154,11 @@ public class Pascal implements Initializable {
                         withd, row * triangleWidth);
                 sideB.setFill(Color.web("#1d284f", 0.5));
                 pane.getChildren().addAll(sideA, sideB);
-            } else if (pattern.equals("powers")) {
+            } else if (pattern.equals("powers") || pattern.equals("fibonacci")) {
                 explain = pascal.getPatternInfo(pattern);
                 patternList = pascal.getPascalPattern(pattern);
-                paintPowers(row);
+                ArrayList<String[]> extraInfo = pascal.getPatternDisplayDetails(pattern);
+                paintExtraInfo(row,extraInfo);
 
             } else {
                 explain = pascal.getPatternInfo(pattern);
@@ -248,13 +249,13 @@ public class Pascal implements Initializable {
     }
 
     /**
-     * paint powers of info
-     *
-     * @param rows
+     * paint extra info
+     * @param rows rows
+     * @param data data
      */
-    private void paintPowers(int rows) {
+    private void paintExtraInfo(int rows,ArrayList<String[]> data) {
         for (int row = 0; row < rows; row++) {
-            Label powerLabel = new Label("= " + (int) Math.pow(2, row));
+            Label powerLabel = new Label(data.get(row)[1]+"="+data.get(row)[0]);
             powerLabel.setLayoutX(searchX(rows + 1, row, row) + triangleWidth);
             powerLabel.setLayoutY(36 + (row) * triangleWidth);
             pane.getChildren().add(powerLabel);

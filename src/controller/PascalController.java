@@ -93,7 +93,7 @@ public class PascalController {
             case "fibonacci":
                 return new FibonacciPattern().getDetails(pascalTriangle);
             
-            case "oddeven":
+            case "powers":
                 return new PowersPattern().getDetails(pascalTriangle);
                 
             default:
